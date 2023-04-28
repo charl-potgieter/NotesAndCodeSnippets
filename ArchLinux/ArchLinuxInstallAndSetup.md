@@ -7,11 +7,13 @@
  - 3 Items are required:
     - the iso file (obtained via magnet link or torrent)
     - the iso signature file (link from Arch download page
-    - the public key of the use that signed the iso.  Will only know who signed once teh file is run through gpg as below (https://archlinux.org/master-keys/)
- 
- - Open cmd and run gpg --verify [signature file] [iso file]
+    - the public key of the use that signed the iso. This can however be auto-retrieved using gpg command below. 
 
- - Above may give a message that "Can't check signature: No public key" but will list he signer in which case the public key can be obtained from the link above.
+ - Open cmd and run below command (as per Arch Wiki install instructions Apr 2023) <br>
+  gpg --keyserver-options auto-key-retrieve --verify archlinux-version-<blah>.iso.sig <br>
+  Note that it is the signature file name included as parameter above, not the iso file name.  Iso needs to have same name though without .sig extension
+
+
 
 <br>
 
