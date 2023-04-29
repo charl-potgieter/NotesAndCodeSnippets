@@ -36,6 +36,7 @@
 
 ### Virtualbox networking summary
 
-![Bkah](/EmbeddedImages/VirtualBoxNetworking.JPG?raw=true "Optional Title")
+![](/EmbeddedImages/VirtualBoxNetworking.JPG?raw=true "")
 
+![](/EmbeddedImages/VirtualBoxPortForwarding.JPG?raw=true "")
 
