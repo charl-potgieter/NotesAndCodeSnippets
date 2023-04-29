@@ -35,8 +35,16 @@
 
 
 ### Virtualbox networking summary
+<img src="./EmbeddedImages/VirtualBoxNetworking.JPG" width=700>
+<img src="./EmbeddedImages/VirtualBoxPortForwarding.JPG" width=700>
 
-![](/EmbeddedImages/VirtualBoxNetworking.JPG?raw=true "")
 
-![](/EmbeddedImages/VirtualBoxPortForwarding.JPG?raw=true "")
+
+
+
+
+
+
+
+
 
