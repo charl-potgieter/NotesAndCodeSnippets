@@ -20,14 +20,22 @@
 ## Networking
 
 
-
 <br>
 
 ## Arch setup as Virtualbox guest
 
+### SSH
  - Port forwarding needs to be enabled in Virtualbox GUI in order to SSH into virtualbox
  - See relevant sections of below links
  - https://dev.to/developertharun/easy-way-to-ssh-into-virtualbox-machine-any-os-just-x-steps-5d9i
  - https://averagelinuxuser.com/ssh-into-virtualbox/
+
+### Jupyter
+ - Port forwarding needs to be enabled Host port  = 8888, Guest Port = 8888
+
+
+### Virtualbox networking summary
+
+![Bkah](/EmbeddedImages/VirtualBoxNetworking.JPG?raw=true "Optional Title")
 
 
