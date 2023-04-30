@@ -19,6 +19,14 @@
 
 ## Networking
 
+Internet access is configured when booting from the iso install disk (I have always been able to ping external www.archlinux.org).  Below is what I have used to get internet working in the live system
+ - these steps need to be completed during the install phase (when a network connection exists) once "chroot-ed" into the new system
+ - install dhcpd
+ - List interfaces with 
+   -  ls /sys/class/net or 
+   - ip link. 
+   - Note that lo is the virtual loopback interface and not used in making network connections.
+- Enable the daemon with  dhcpcd@interface.service for example systemctl enable dhcpcd@enp0s3.service
 
 <br>
 
@@ -32,6 +40,9 @@
 
 ### Jupyter
  - Port forwarding needs to be enabled Host port  = 8888, Guest Port = 8888
+ - Run on the guest with jupyter lab --no-browser --ip="*"
+ - See link for guide: https://towardsdatascience.com/how-to-connect-to-jupyterlab-remotely-9180b57c45bb
+
 
 
 ### Virtualbox networking summary
