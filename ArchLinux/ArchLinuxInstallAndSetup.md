@@ -44,9 +44,9 @@ Internet access is configured when booting from the iso install disk (I have alw
  - SSH into guest and run following to launch the jupyter lab server:  
  `jupyter lab --no-browser --port=8888`
  - On host (in a new shell) run:   
- `ssh -p \<host ssh port> -L \<host Jupyter Port>:localhost:\<guest jupyter port> \<remote user>@\<remote host ip>`
+ `ssh -p <host ssh port> -L <host Jupyter Port>:localhost:<guest jupyter port> <remote user>@<remote host ip>`
   - For example if ssh is running on host port 2222 and port forwarding for Jupyter host and guest is 8888 run  
-  `ssh -p 2222 -L 8888:localhost:8888 \<user>@\<remote ip address>`
+  `ssh -p 2222 -L 8888:localhost:8888 <user>@<remote ip address>`
  - open browser on host with url = http://localhost:8888/lab  (on first run a token will be requested which can be copied from output when jupyter lab --no-browser --port=8888 is run)  
 
 
@@ -62,6 +62,7 @@ Internet access is configured when booting from the iso install disk (I have alw
       - Ensure guest utils are installed
       - Ensure the vboxservice.service daemon is enabled as above
       - On the Virtualbox gui add a shared folder (Machine Folder, Make Permanent - do not auto-mount or provide a mount point)
+       - Do not mount directly to user home drive, as this will then result in other files under home not being visible, rather mount to a subdirectory of home
        - Mount at boot can then be handled by fstab entry as per Arch Wiki instructions  
        `sharedFolderName  /path/to/mntPtOnGuestMachine  vboxsf  uid=user,gid=group,rw,dmode=700,fmode=600,noauto,x-systemd.automount`
 
