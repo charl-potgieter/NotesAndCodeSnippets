@@ -12,8 +12,8 @@ Follow latest arch linux install guide per wiki.  Below are notes covering areas
     - the iso signature file (link from Arch download page)
     - the public key of the use that signed the iso. This can however be auto-retrieved using gpg command below. 
 
- - Open cmd and run below command (as per Arch Wiki install instructions Apr 2023) <br>
-  gpg --keyserver-options auto-key-retrieve --verify archlinux-version-<blah>.iso.sig <br>
+ - Open cmd and run below command (as per Arch Wiki install instructions Apr 2023)  
+  `gpg --keyserver-options auto-key-retrieve --verify archlinux-version-<blah>.iso.sig`  
   Note that it is the signature file name included as parameter above, not the iso file name.  Iso needs to have same name though without .sig extension
 
 <br>
@@ -38,10 +38,6 @@ Internet access is configured when booting from the iso install disk (I have alw
 
 <br>
 
-This is the example line.
-
-
-
 ## Jupyter lab remote access over virtualbox
  - Port forwarding needs to be enabled enabled in VirtualBox GUI Host port  = 8888, Guest Port = 8888
  - Will have to run 2 git bash terminals in Windows unless some of below steps are automated in the guest
@@ -63,7 +59,7 @@ This is the example line.
   - Enable daemon  
   `vboxservice.service`
   - Below seems to work for me to enable shared folders (some other methods give me permission issues)
-      - Ensure guest utils are installed and vboxservice 
+      - Ensure guest utils are installed
       - Ensure the vboxservice.service daemon is enabled as above
       - On the Virtualbox gui add a shared folder (Machine Folder, Make Permanent - do not auto-mount or provide a mount point)
        - Mount at boot can then be handled by fstab entry as per Arch Wiki instructions  
