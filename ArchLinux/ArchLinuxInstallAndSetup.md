@@ -32,14 +32,14 @@ Internet access is configured when booting from the iso install disk (I have alw
 
 ## SSH
  - See Arch Wiki for detail instructions.
- - Recommended to change from 22 to a random higher one
+ - Recommended to change from 22 to a random higher one.  See here for guide of unused port numbers: https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
  - Disable passwords and force use of SSH keys (see Arch Wiki for details)
  - If running in VirtualBox -> Port forwarding needs to be enabled in Virtualbox GUI in order to SSH into virtualbox under Machine Settings / Network / Advanced / Port Forwarding.  May need to restart virtual machine after changing these settings.
 
 <br>
 
 ## Jupyter lab remote access over virtualbox
- - Port forwarding needs to be enabled enabled in VirtualBox GUI Host port  = 8888, Guest Port = 8888
+ - Port forwarding needs to be enabled enabled in VirtualBox GUI Host port  = 8888, Guest Port = 8888  (It may be good to use a non-standard port though to avoid muddling with a Jupyter notebook on host using a default port.  See here for guide for unused port numbers: https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
  - Will have to run 2 git bash terminals in Windows unless some of below steps are automated in the guest
  - SSH into guest and run following to launch the jupyter lab server:  
  `jupyter lab --no-browser --port=8888`
@@ -73,7 +73,7 @@ Internet access is configured when booting from the iso install disk (I have alw
 
 
 ## Example virtualbox networking summary
-Change ssh guest port 22 to a different number if a non-default port is set as recommended above
+Change ssh guest port 22 and Jupyter ports to a different number if a non-default port is set as recommended above
 
 <img src="./EmbeddedImages/VirtualBoxNetworking.JPG" width=700>
 <img src="./EmbeddedImages/VirtualBoxPortForwarding.JPG" width=700>
