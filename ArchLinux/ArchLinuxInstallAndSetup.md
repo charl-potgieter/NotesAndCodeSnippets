@@ -23,7 +23,7 @@ Follow latest arch linux install guide per wiki.  Below are notes covering areas
 Internet access is configured when booting from the iso install disk (I have always been able to ping external www.archlinux.org when booted from the install image).  Below is what I have used to get internet working in the live system
  - these steps need to be completed during the install phase when booted from the iso image (when a network connection exists) once "chroot-ed" into the new system
  - install dhcpd
- - List interfaces with <code>ls /sys/class/net* </code> or  'ip link'
+ - List interfaces with <code>ls /sys/class/net* </code> or  `ip link`
 - Note that lo is the virtual loopback interface and not used in making network connections.
 - Enable the daemon with  dhcpcd@interface.service for example systemctl enable dhcpcd@enp0s3.service
 
