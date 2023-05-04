@@ -77,3 +77,9 @@ Change ssh guest port 22 and Jupyter ports to a different number if a non-defaul
 
 <img src="./EmbeddedImages/VirtualBoxNetworking.JPG" width=700>
 <img src="./EmbeddedImages/VirtualBoxPortForwarding.JPG" width=700>
+
+<br>
+
+## Other
+ - It is worthwhile installing a font family, at a minimum ttf-dejavu, as fonts are sometimes needed for development purposes even if only coding in terminal.
+
