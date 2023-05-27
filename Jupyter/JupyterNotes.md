@@ -15,3 +15,6 @@ State below is as at 16 May 2023
    - It doesn't seem as if any special Latex software is required to export the latex formulas in above process
 
 
+## Sundry
+
+ - Exporting to HTML using nbconvert does render latex maths formulas properly - the html file just doesnt open properly in JupyterLab, open with a browser.
