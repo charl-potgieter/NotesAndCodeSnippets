@@ -1,6 +1,4 @@
-# Website development
-
-## Static website development using Pelican
+# Static website development using Pelican
 
  - https://docs.getpelican.com/en/latest/
  - This is what is utilised to generate the github pages python data science site: 
