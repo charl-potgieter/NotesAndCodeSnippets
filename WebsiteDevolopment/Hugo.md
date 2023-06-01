@@ -10,6 +10,9 @@
 ## Publishing to github pages
 
  - Ensure that a base URL is specified in the hugo.toml configuration file
+ - For a git pages project site the URL will be 
+ `http(s)://<username>.github.io/<repository>`  (my experience is https rather than http?)  Refer documentation and other options here:
+ https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#types-of-github-pages-sites
  - Follow instructions here carefully: https://gohugo.io/hosting-and-deployment/hosting-on-github/
  - In particular ensure that the yaml file (refer link above):
      - contains the correct branch name
