@@ -24,7 +24,8 @@
 
  - If file <site_root>/layouts/partials/docs/header.html does not exist copy it over from <site_root>\themes\<theme-name>\layouts\partials\docs
  - Add below to above file
-    ```<script>
+    ```
+    <script>
     MathJax = {
     tex: {
         inlineMath: [['$', '$'], ['\(', '\)']]
@@ -34,6 +35,7 @@
     <script id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
     </script>
+    ```
  - **Note** after above I have had cases where Latex does still not render - I think it is a case that header.html was never called.   I have put the above script on footer.html as well which seemed to have solved the issue.
  - Above is adapted from https://github.com/matcornic/hugo-theme-learn/issues/188
 
