@@ -36,7 +36,7 @@
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
     </script>
     ```
- - **Note** after above I have had cases where Latex does still not render - I think it is a case that header.html was never called.   I have put the above script on footer.html as well which seemed to have solved the issue.
+ - **Note** after above I have had cases where Latex does still not render - I think it is a case that header.html was never called.   I have  similarly copied footer.html from theme folder as above and added above javascript - seems to have solved the issue.
  - Above is adapted from https://github.com/matcornic/hugo-theme-learn/issues/188
 
 <br>
