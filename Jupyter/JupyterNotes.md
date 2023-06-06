@@ -1,5 +1,14 @@
 # Jupyter(Lab) Notes
 
+
+## Terminal
+
+ - By default there is not option to open new terminal in arch linux
+ - need to first install python-jupyter-server-terminals  https://archlinux.org/packages/extra/any/python-jupyter-server-terminals/
+
+<br>
+
+
 ## Exporting styled pandas dataframes to webpdf rather than pdf
 
 State below is as at 16 May 2023
@@ -14,6 +23,7 @@ State below is as at 16 May 2023
   - Running above may hang.  See issue raised here. https://github.com/jupyter/nbconvert/issues/1834 <br> Sandbox needs to be disabled with : <br> `echo 'c.WebPDFExporter.disable_sandbox = True' > ~/.jupyter/jupyter_nbconvert_config.py && touch ~/.jupyter/jupyter_lab_config.py && echo 'c.WebPDFExporter.disable_sandbox = True' >> ~/.jupyter/jupyter_lab_config.py`
    - It doesn't seem as if any special Latex software is required to export the latex formulas in above process
 
+<br>
 
 ## Sundry
 
