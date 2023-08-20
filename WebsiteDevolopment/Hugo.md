@@ -51,3 +51,12 @@
  - Note that the file still needs to start with either hugo front matter or at minimum a hash to indicate that the file is markdown
  -  The file needs to have a .md extension
  - Above is useful for pandas table visualisation to render the html styler
+ 
+ 
+ ## Images, static folder and base-url:
+ 
+  - As per hugo docs https://gohugo.io/content-management/static-files/:  
+    * By default, the static/ directory in the site project is used for all static files (e.g. stylesheets, JavaScript, images). The static files are served on the site root path (eg. if you have the file static/image.png you can access it using http://{server-url}/image.png, to include it in a document you can use ![Example image](/image.png) ). *
+  - This works if there is a one-path base URL defined in the main configuration file for example baseURL = 'https://example.com'   but if the base URL is defineded as something like this  'https://charl-potgieter.github.io/AustralianSchoolMaths/' then the reference to the image needs to include the url sub-path
+    '`![Example image](/AustralianSchoolMaths/image.png)
+ 
