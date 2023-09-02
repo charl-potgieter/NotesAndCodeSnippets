@@ -60,3 +60,10 @@
     ``![Example image](/image.png)`` )_
   - This works if there is a one-path base URL defined in the main configuration file for example baseURL = 'https://example.com'   but if the base URL is defineded as something like this  'https://charl-potgieter.github.io/AustralianSchoolMaths/' then the reference to the image needs to include the url sub-path <br>
     ``![Example image](/AustralianSchoolMaths/image.png)``
+
+
+## Overriding hugo book defaults:
+
+ - Refer documentation here under https://github.com/alex-shpak/hugo-book under Partials and Extra Customisation headings.
+ - To override the menu sidebar colour I copied the code from .../theme/hugo-book/assets/_main.scss and added it to <site-root-not-theme>/assets/_custom.scss file.
+  - No changes were made to the files in the theme folder (which will not push to github anyway given it is a git submodule of the theme itself which I should not be changing directly)
