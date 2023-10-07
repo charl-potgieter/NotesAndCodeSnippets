@@ -88,7 +88,7 @@ Change ssh guest port 22 and Jupyter ports to a different number if a non-defaul
  - In order to access a folder shared from a Windows pc
      - Install cifs-utils
      - Need to specify uid and gid when mounting for example which will generally be the same as the username for example
-       `sudo mount -t cifs //server_name_or_ip/share_name /mountpoint -o username=john,uid=$UID,gid=$UID
+       `sudo mount -t cifs //server_name_or_ip/share_name /mountpoint -o username=john,uid=my_username,gid=my_groupname
      - See arch wiki for furhter mount options and instructions
  
  - Follow arch wiki samba client instructions for further guidance
