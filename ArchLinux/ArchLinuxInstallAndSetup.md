@@ -22,7 +22,7 @@ Follow latest arch linux install guide per wiki.  Below are notes covering areas
 
 Internet access is configured when booting from the iso install disk (I have always been able to ping external www.archlinux.org when booted from the install image).  Below is what I have used to get internet working in the live system
  - these steps need to be completed during the install phase when booted from the iso image (when a network connection exists) once "chroot-ed" into the new system
- - install dhcpd
+ - install dhcpcd
  - List interfaces with `ls /sys/class/net` or  `ip link`
 - Note that lo is the virtual loopback interface and not used in making network connections.
 - Enable the daemon with  dhcpcd@interface.service for example systemctl enable dhcpcd@enp0s3.service
@@ -80,6 +80,32 @@ Change ssh guest port 22 and Jupyter ports to a different number if a non-defaul
 
 <br>
 
+
+## Samba and sharing files on Windows
+
+ - In Windows 10 files can be shared via samba by right clicking folder, select sharing and then advanced sharing to add users and permissions (seems to default to everyone - be sure to remove this!)
+ 
+ - In order to access a folder shared from a Windows pc
+     - Install cifs-utils
+     - Need to specify uid and gid when mounting for example which will generally be the same as the username for example
+       `sudo mount -t cifs //server_name_or_ip/share_name /mountpoint -o username=john,uid=$UID,gid=$UID
+     - See arch wiki for furhter mount options and instructions
+ 
+ - Follow arch wiki samba client instructions for further guidance
+ 
+ - Store credentials in a protected credentials file as per Arch Wiki https://wiki.archlinux.org/title/samba#Storing_share_passwords and add reference to this file in fstab for auto mounting with something like below:
+ `//SERVER/sharename /mnt/mountpoint cifs uid=my_username,gid=my_groupname,_netdev,nofail,credentials=/etc/samba/credentials/share  0 0
+ 
+ - I found mounting network share as a systemd unit worked well  (mounting via fstab was more fiddly and never worked well for me as network was not available)
+    - note that I first had to  enable systemd-networkd-wait-online.service as specified here https://wiki.archlinux.org/title/samba#Automatic_mounting
+    - see here: https://wiki.archlinux.org/title/samba#As_systemd_unit
+    - i had to add uid=my_username and gid=my_groupname to the Options section of the file (as per Arch wiki above) to get the correct permissions
+    
+  
+  
+
+
 ## Other
+ - I am (Sep 2023) using BIOS and MBR (Master Boot Record) and GRUB boot loader.   Other options all seem to me on the surface more complicated combined with fact that I am familiar with the BIOS/MBR/GRUB process
  - It is worthwhile installing a font family, at a minimum ttf-dejavu, as fonts are sometimes needed for development purposes even if only coding in terminal.
 
