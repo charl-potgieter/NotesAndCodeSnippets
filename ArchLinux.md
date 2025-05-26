@@ -1,4 +1,4 @@
-# Arch Linux install and setup notes
+# Arch Linux
 
 Follow latest arch linux install guide per wiki.  Below are notes covering areas that I sometimes get stuck on.
 
