@@ -75,6 +75,8 @@ Open virtual machine manager and create a new machine.
  - When it comes to install on drive, there are no drives visible.  Click load driver and select AMD64 and w11 (why amd?).  Select this and click install and the drive should now appear
  - Once the windows pc is up and running need to install the spice drivers (guest utils) from inside the windows pc. Click on spice-guest-tools link to download at web page below  https://www.spice-space.org/download.html  <br> Ref  https://wiki.archlinux.org/title/Virt-manager#Guest_utils  
  - Perform a restart
+ - IMPORTANT!!  Navigate to the cd containing the Virtio drivers (as set up above) and run the executable virtio-win-guest-tools.exe.  This makes a huge difference to the font rendering
+ - IMPORTANT!!  Navigate to the cd containing the Virtio drivers (as set up above) and run the executable virtio-win-guest-tools.exe.  This makes a huge difference to the font rendering.
 
 ## Other references
 https://www.youtube.com/watch?v=G28IVCrKLhI&t=30s 
