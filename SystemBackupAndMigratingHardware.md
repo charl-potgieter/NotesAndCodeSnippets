@@ -1,15 +1,15 @@
-References
------------
-https://wiki.archlinux.org/title/Migrate_installation_to_new_hardware  (The top to bottom approach)
-https://wiki.archlinux.org/title/Installation_guide#Example_layouts
-https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system
-https://wiki.archlinux.org/title/Full_system_backup_with_tar
-https://wiki.archlinux.org/title/Rsync#Full_system_backup  (for guidance as to recommended exclusion folders)
-https://wiki.archlinux.org/title/Systemd-boot
+# System backup and restore
+
+## References
+ - https://wiki.archlinux.org/title/Migrate_installation_to_new_hardware  (The top to bottom approach)
+ - https://wiki.archlinux.org/title/Installation_guide#Example_layouts
+ - https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system
+ - https://wiki.archlinux.org/title/Full_system_backup_with_tar
+ - https://wiki.archlinux.org/title/Rsync#Full_system_backup  (for guidance as to recommended exclusion folders)
+ - https://wiki.archlinux.org/title/Systemd-boot
 
 
-Backing up the system
----------------------
+## Backing up the system
 - I am currently backing up using bsdtar backup as permissions are maintained inside the tarball irrespective of type of filesystem where the tarball is saved.  Note, bsdtar is used as GNU tar does not preserve extended attributes as noted on Arch Wiki.
 
 - Follow instructions as per arch wiki
@@ -29,8 +29,7 @@ In summary
 
 
 
-Restoring backup on new hardware
---------------------------------
+## Restoring backup on new hardware
 
  - be careful - don't install on the orignal machine if not the intention!
 
