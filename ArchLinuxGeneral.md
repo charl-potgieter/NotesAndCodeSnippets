@@ -109,4 +109,4 @@ Change ssh guest port 22 and Jupyter ports to a different number if a non-defaul
 ## Other
  - I am (Sep 2023) using BIOS and MBR (Master Boot Record) and GRUB boot loader.   Other options all seem to me on the surface more complicated combined with fact that I am familiar with the BIOS/MBR/GRUB process
  - It is worthwhile installing a font family, at a minimum ttf-dejavu, as fonts are sometimes needed for development purposes even if only coding in terminal.
-
+ - Bluetooth - see instructions but I do find that bluetui seems to provide an intuitive interface to scan, trust and connect to devices.  See simple usage as per bluetui github page
