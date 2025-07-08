@@ -17,10 +17,10 @@
 
 In summary
  - Ensure that my custom tar backup script and exclusion file are located on the pc to be backed up.  These were constructed based on arch wiki page above.
- - Consider any sensitve information that may exist on the system that may need to be added to the exclusion file, and potentially to a password keeper to enable it to be manually added to the new pc.
+ - Consider any sensitve information that may exist on the system that may need to be added to the exclusion file, and potentially add it to a password keeper to enable it to be manually added to the new pc.
  - Do not backup a live system, boot pc using arch installation usb.
  - Open any encrypted drives e.g. cryptsetup open /dev/sdx root.
- - Mount necessary partitions - may include a root and a boot partition.  If mounting an encrypted partition it may nneed to be mounted with something like this:
+ - Mount necessary partitions - may include a root and a boot partition.  If mounting an encrypted partition it may need to be mounted with something like this:
      mount /dev/mapper/root /mnt
  - Use chroot rather than arch-chroot (see reason given on above arch wiki page, although I think my tar exlusions should mitigate this)
 	chroot /mnt /bin/bash
@@ -37,7 +37,7 @@ In summary
 
  - Partition disks on new hardware if required.  Current install contains an EFI boot partition and a dm-crypted root ext 4 partition,
  
- - mount the partitions on the target noting that any encrpyted partition will first need to be opened for example  cryptsetup open /dev/sda2 root && mount /dev/mapper/root /mnt  Mount the unencrpted boot partition at /mnt/boot  (I currently am using seperate partitions - encrypted for root and unencrypted boot as above  which both need to be mounted)
+ - mount the partitions on the target noting that any encrpyted partition will first need to be opened for example  cryptsetup open /dev/sda2 root && mount /dev/mapper/root /mnt  Mount the unencrpted boot partition at /mnt/boot  (I currently am using seperate partitions - encrypted for root and unencrypted boot as above  which both need to be mounted).  Can refer to /etc/fstab of the source system for guidance.
 
  - If not repartitioning delete files on old hardware - depending on setup with rm -r /mnt   BE CAREFUL !!! 
 
