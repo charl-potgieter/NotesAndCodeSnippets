@@ -17,15 +17,23 @@
 
 In summary
  - Ensure that my custom tar backup script and exclusion file are located on the pc to be backed up.  These were constructed based on arch wiki page above.
+
  - Consider any sensitve information that may exist on the system that may need to be added to the exclusion file, and potentially add it to a password keeper to enable it to be manually added to the new pc.
+
  - Do not backup a live system, boot pc using arch installation usb.
- - Open any encrypted drives e.g. cryptsetup open /dev/sdx root.
+
+- Open any encrypted drives e.g. <br> `cryptsetup open /dev/sdx root.`
+
  - Mount necessary partitions - may include a root and a boot partition.  If mounting an encrypted partition it may need to be mounted with something like this:
      mount /dev/mapper/root /mnt
+
+ - Mount any necessary backup destination drives before chroot (cannot seem to run blkid, fdisk or mount once I am in chroot).  Note the double referenced /mnt - the mount will look someting like this: <br>
+ `mount /dev/sdx  /mnt/mnt/ExternalHdd`
+
  - Use chroot rather than arch-chroot (see reason given on above arch wiki page, although I think my tar exlusions should mitigate this)
 	chroot /mnt /bin/bash
+
  - As sudo, run the backup script which references the exclusion file - this should already be saved on the pc hard drive
- - Move the tarball to samba server, cloud drive or usb as appropriate
 
 
 
@@ -49,8 +57,10 @@ In summary
 	bsdtar --acls --xattrs -xpzvf backupfile
 	
 - Finalise the installation
-	- Follow instructions hehttps://wiki.archlinux.org/title/Migrate_installation_to_new_hardware, in particular note
-	- update fstab - first have to delete the old lines referencing the  original partitions (but not the samba partitions or swap file) and then run genfstab -U /mnt >> /mnt/etc/fstab (do this before arch-chroot)
+	- Follow instructions here <br>
+    https://wiki.archlinux.org/title/Migrate_installation_to_new_hardware, in particular note
+	- update fstab - first have to delete the old lines referencing the  original partitions (but not the samba partitions or swap file) and then run (before arch-chroot) <br>
+    `genfstab -U /mnt >> /mnt/etc/fstab`
 	- Arch wiki refers to updating bootloader but in case of sticking with systemd boot I can simply update the root partition (not the boot partition!) referenced in the kernel options of systms d boot in /mnt/boot/loader/entries/arch.conf and /mnt/boot/loader/entries/arch-fallback.conf
 	- arch-chroot into the new system and creat a new initramfs with mkinitcpio -P
 	- update /etc/hostname
