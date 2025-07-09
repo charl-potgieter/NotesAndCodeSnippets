@@ -25,7 +25,7 @@ In summary
 - Open any encrypted drives e.g. <br> `cryptsetup open /dev/sdx root.`
 
  - Mount necessary partitions - may include a root and a boot partition.  If mounting an encrypted partition it may need to be mounted with something like this:
-     mount /dev/mapper/root /mnt
+    `mount /dev/mapper/root /mnt`
 
  - Mount any necessary backup destination drives before chroot (cannot seem to run blkid, fdisk or mount once I am in chroot).  Note the double referenced /mnt - the mount will look someting like this: <br>
  `mount /dev/sdx  /mnt/mnt/ExternalHdd`
@@ -39,22 +39,27 @@ In summary
 
 ## Restoring backup on new hardware
 
- - be careful - don't install on the orignal machine if not the intention!
+ - Safest option is to copy backup tarball onto a usb stick with nothing else important on it.
 
- - boot the target machine using arch linux install medium
+ - Be careful - don't install on the orignal machine if not the intention!
+
+ - Boot the target machine using arch linux install medium
 
  - Partition disks on new hardware if required.  Current install contains an EFI boot partition and a dm-crypted root ext 4 partition,
  
- - mount the partitions on the target noting that any encrpyted partition will first need to be opened for example  cryptsetup open /dev/sda2 root && mount /dev/mapper/root /mnt  Mount the unencrpted boot partition at /mnt/boot  (I currently am using seperate partitions - encrypted for root and unencrypted boot as above  which both need to be mounted).  Can refer to /etc/fstab of the source system for guidance.
+ - Mount the partitions on the target noting that any encrpyted partition will first need to be opened for example <br>
+ `cryptsetup open /dev/sdx root` <br>
+ `mount /dev/mapper/root /mnt` <br>
+ Mount the unencrpted boot partition at /mnt/boot  (I currently am using seperate partitions - encrypted for root and unencrypted boot as above  which both need to be mounted).  Can refer to /etc/fstab of the source system for guidance as to the partitioning scheme being utilised.
 
- - If not repartitioning delete files on old hardware - depending on setup with rm -r /mnt   BE CAREFUL !!! 
+ - If not repartitioning delete files on old hardware - depending on setup with rm -r /mnt   BE CAREFUL - maybe safer to do this before mounting the drive containing the backup !!! 
 
  - mount the drive containing the tarball backup (or log into samba or get from cloud).
  
  - Navigate to the /mnt directory (assuming this is the mount point for root on the new target pc)
 
- - As per above Arch wiki page (with addition of verbose flag) restore the files as follows
-	bsdtar --acls --xattrs -xpzvf backupfile
+ - As per above Arch wiki page (with addition of verbose flag) restore the files as follows <br>
+	`bsdtar --acls --xattrs -xpzvf backupfile`
 	
 - Finalise the installation
 	- Follow instructions here <br>
