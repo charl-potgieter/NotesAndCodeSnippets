@@ -21,7 +21,10 @@ Follow latest arch linux install guide per wiki.  Below are notes covering areas
 ## Networking
 
 Internet access is configured when booting from the iso install disk (I have always been able to ping external www.archlinux.org when booted from the install image).  Below is what I have used to get internet working in the live system
- - these steps need to be completed during the install phase when booted from the iso image (when a network connection exists) once "chroot-ed" into the new system
+ - Software installation needs be completed during the install phase when booted from the iso image (when a network connection exists) once "chroot-ed" into the new system (or alternatively at the time base package is installed into /mnt before chroot)
+- currently I am using networkmanager package which includes nmtui which provides an easy tui (terminal user interface) method of setting up networks
+
+Older method no longer using:
  - install dhcpcd
  - List interfaces with `ls /sys/class/net` or  `ip link`
 - Note that lo is the virtual loopback interface and not used in making network connections.
