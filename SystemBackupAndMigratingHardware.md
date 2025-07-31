@@ -39,6 +39,8 @@ In summary
 
 ## Restoring backup on new hardware
 
+ - Backups can also be restored on a virtual machine for testing purposes
+ 
  - Safest option is to copy backup tarball onto a usb stick with nothing else important on it.
 
  - Be careful - don't install on the orignal machine if not the intention!
