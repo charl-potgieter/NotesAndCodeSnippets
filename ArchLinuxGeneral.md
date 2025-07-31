@@ -30,6 +30,11 @@ Older method no longer using:
 - Note that lo is the virtual loopback interface and not used in making network connections.
 - Enable the daemon with  dhcpcd@interface.service for example systemctl enable dhcpcd@enp0s3.service
 
+##### Host name resolution
+ - For samba refer starting nmb.service and setting netbios name option in smb.conf and noted per wiki (seems to work for Windows clients)
+ - https://wiki.archlinux.org/title/Samba#Enabling_and_starting_services 
+ - I never had much luck getting this to work in Linux clients though, simplest is just to add the host to /etc/hosts
+ - https://man.archlinux.org/man/hosts.5
 <br>
 
 
