@@ -68,12 +68,19 @@ In summary
     https://wiki.archlinux.org/title/Migrate_installation_to_new_hardware, in particular note
 	- update fstab - first have to delete the old lines referencing the  original partitions (but not the samba partitions or swap file) and then run (before arch-chroot) <br>
     `genfstab -U /mnt >> /mnt/etc/fstab`
-	- Arch wiki refers to updating bootloader but in case of sticking with systemd boot I can simply update the root partition (not the boot partition!) referenced in the kernel options of systms d boot in /mnt/boot/loader/entries/arch.conf and /mnt/boot/loader/entries/arch-fallback.conf (Note that the UUID that needs to be included in these files is that which appears per BLKID, which is different to /etc/fstab)
+	- Arch wiki refers to updating bootloader but in case of sticking with systemd boot I can simply update the root partition (not the boot partition!) referenced in the kernel options of systms d boot in /mnt/boot/loader/entries/arch.conf and /mnt/boot/loader/entries/arch-fallback.conf 
+        - Note that the UUID that needs to be included in these files is that which appears per BLKID, which is different to /etc/fstab
+        - Adjustment may needed to be made one if the backup and the target root partitions was encrypted with dm-crypt and and the other is not.  For a dm-crypt partition the relevant entry looks like this: <br>
+        `options cryptdevice=UUID=XXX-XXX-XXXX-XXX:root root=/dev/mapper/root`<br>
+        For a non encrpyted partition the entry will look something like this: <br>
+        `options root=UID=XXX-XXX-XXXX-XXX rw`
 	- arch-chroot into the new system and creat a new initramfs with mkinitcpio -P
 	- update /etc/hostname
 	- Refer paths excluded from backup per exclusion file due to senstive nature.  These may need to be manually restored by reference to data stored in a password keeper.
 
 ## Restoring on VirtualBox
+
+A virtualbox install seems to be more effort than it is worth.  Seems easier to perform an install on another old pc.  Below notes detail my attempt at more or less getting a sway based GUI install up and running.
 
 - When creating virtual machine ensure enable EFI is ticked under hardware if the operating system is running in EFI 
 - Make hard drive sufficient size to accomodate OS as well as the tarball to be extracted
@@ -96,4 +103,6 @@ In summary
     - Note destination path should be on the mounted virtual hard drive, dont try copying to the mounted install iso
  - The GUI tends to freeze when extracting the tarball.  The preview pane in the virtualbox manager still seems to update.  Maybe wait until it has no more activity?  It may be better to SSH into the virtual machine and run the extraction via SSH from the host?
  - Sway seems to work with VBOXVGA graphics card without 3d acceleration enabled, even though it gets flagged as not a recommended setting by tthe virtualbox GUI.  The recommended graphhics card of VMSVGA does not seem to work but maybe that is because I have not yet attempted to install guest additions.
+ - I have not yet tried to capture the MOD key in virtualbox  - it is not working by default.
  - Consider deleting the tarball in the VM to save drive space
+
