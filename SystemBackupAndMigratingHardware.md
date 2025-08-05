@@ -20,7 +20,7 @@ In summary
 
  - Consider any sensitve information that may exist on the system that may need to be added to the exclusion file, and potentially add it to a password keeper to enable it to be manually added to the new pc.
 
- - Do not backup a live system, boot pc using arch installation usb.
+ - Do not backup a live system, boot pc using arch installation usb.  (I am currently experimenting backing up a live sytem  using the custom bash script which will make some of the below irrelevant)
 
 - Open any encrypted drives e.g. <br> `cryptsetup open /dev/sdx root.`
 
