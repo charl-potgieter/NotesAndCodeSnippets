@@ -78,7 +78,7 @@ In summary
 	- arch-chroot into the new system and creat a new initramfs with mkinitcpio -P
 	- update /etc/hostname
 	- Refer paths excluded from backup per exclusion file due to senstive nature.  These may need to be manually restored by reference to data stored in a password keeper.
-    - reboot
+    - Shut down, remove any usbs and reboot
     - wifi may need to be enabled, for exanmple by using nmtui (assuming that network maneger is intalled)
 
 ## Restoring on VirtualBox
