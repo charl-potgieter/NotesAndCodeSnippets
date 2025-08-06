@@ -66,17 +66,20 @@ In summary
 - Finalise the installation
 	- Follow instructions here <br>
     https://wiki.archlinux.org/title/Migrate_installation_to_new_hardware, in particular note
-	- update fstab - first have to delete the old lines referencing the  original partitions (but not the samba partitions or swap file) and then run (before arch-chroot) <br>
+	- update fstab - first have to delete the old lines referencing the  original partitions (but not the samba partitions or swap file) and then run (before arch-chroot).  If a usb was mounted containing the backup tarball, it is safer to unmount this before generating fstab. <br>
     `genfstab -U /mnt >> /mnt/etc/fstab`
 	- Arch wiki refers to updating bootloader but in case of sticking with systemd boot I can simply update the root partition (not the boot partition!) referenced in the kernel options of systms d boot in /mnt/boot/loader/entries/arch.conf and /mnt/boot/loader/entries/arch-fallback.conf 
         - Note that the UUID that needs to be included in these files is that which appears per BLKID, which is different to /etc/fstab
-        - Adjustment may needed to be made one if the backup and the target root partitions was encrypted with dm-crypt and and the other is not.  For a dm-crypt partition the relevant entry looks like this: <br>
+        - It can be useful for the anyt target pc used for test restores to have both encrypted and standard partitions that can be used as root partitions depending on the nature of the source pc setup.
+        - Alternatively, adjustment may needed to be made one if the backup and the target root partitions was encrypted with dm-crypt and and the other is not.  For a dm-crypt partition the relevant entry looks like this: <br>
         `options cryptdevice=UUID=XXX-XXX-XXXX-XXX:root root=/dev/mapper/root`<br>
         For a non encrpyted partition the entry will look something like this: <br>
         `options root=UID=XXX-XXX-XXXX-XXX rw`
 	- arch-chroot into the new system and creat a new initramfs with mkinitcpio -P
 	- update /etc/hostname
 	- Refer paths excluded from backup per exclusion file due to senstive nature.  These may need to be manually restored by reference to data stored in a password keeper.
+    - reboot
+    - wifi may need to be enabled, for exanmple by using nmtui (assuming that network maneger is intalled)
 
 ## Restoring on VirtualBox
 
