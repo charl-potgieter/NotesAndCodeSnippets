@@ -30,6 +30,9 @@ Older method no longer using:
 - Note that lo is the virtual loopback interface and not used in making network connections.
 - Enable the daemon with  dhcpcd@interface.service for example systemctl enable dhcpcd@enp0s3.service
 
+##### Firewall
+ - As of Nov 2025 I am using uncomplicated firewall (ufc)
+
 ##### Host name resolution
  - For samba refer starting nmb.service and setting netbios name option in smb.conf and noted per wiki (seems to work for Windows clients)
  - https://wiki.archlinux.org/title/Samba#Enabling_and_starting_services 
