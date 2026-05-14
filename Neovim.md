@@ -3,6 +3,10 @@
 ## TODO
 - Look at pyproject.toml in Aus school maths and note 
 [tool.poetry.group.dev.dependencies] section
+- Also see 
+[tool.ruff]
+line-length = 79
+
 - What is vulture and how and why did I install it
  - Note how vulture and depugpy are listed as dependiencies in the virtual
    poetry environment
