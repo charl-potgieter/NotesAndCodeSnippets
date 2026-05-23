@@ -13,12 +13,13 @@ line-length = 79
  - Should debugpy  be installed by Mason rather than the pacman?
 
 
-## General notes
 
- - Mason<br>
+ #### Mason<br>
  It is possible to install programs with OS package manager or manually install.
- Mason however seems to simplify the process if one is happy ----------h the fact that
+ Mason however seems to simplify the process if one is happy with the fact that
  programs are geittign installed and updatd via the text editor.
+
+ #### Expand
  - Linter
  - Type checker
  - Debuger
