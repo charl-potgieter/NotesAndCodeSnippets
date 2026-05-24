@@ -28,7 +28,7 @@ line-length = 79
  - Lazy.nvim, like Lua itself, uses Lua as a scripting language for setup
 
 
- #### Mason<br>
+ #### Mason
  - mason.nvim is a Neovim plugin that allows you to easily manage external
    editor tooling  editor tooling such as LSP servers, DAP servers, linters,and
    formatters through a single interface.
@@ -41,6 +41,20 @@ line-length = 79
    limits install scope to Neovim
  - Mason itself can be installed using Lazy.nvim
 
+#### Language Server Protocol (LSP)
+ - The Language Server Protocol (LSP) is an open, JSON-RPC-based protocol for use
+between source-code editors or integrated development environments (IDEs) and
+servers that provide "language intelligence tools": programming
+language-specific features like code completion, syntax highlighting and marking
+of warnings and errors, as well as refactoring routines. The goal of the
+protocol is to allow programming language support to be implemented and
+distributed independently of any given editor or IDE.
+ - Python LSP examples include pyright, basedpyright and ruff.  Note that these
+   tools sometimes play dual roles for example pyright is first and foremost a
+   static type checker but also takes on the role as LSP in Neovim.
+ - nvim-lspconfig is a collection of LSP server configurations for the Nvim LSP
+   client.
+<!-- - TODO:   How does this interact with the individual LSP plugin setups? --> 
 
 #### Parser
  - A parser takes input data (typically text) and builds a data structure often
