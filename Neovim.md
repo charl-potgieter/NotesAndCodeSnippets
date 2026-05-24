@@ -41,7 +41,23 @@ line-length = 79
    limits install scope to Neovim
  - Mason itself can be installed using Lazy.nvim
 
- #### Expand
+
+#### Parser
+ - A parser takes input data (typically text) and builds a data structure often
+   some kind kind of parse tree, abstract syntax tree or other hierarchical
+   structure, giving a structural representation of input while checking for the
+   correct syntax.
+ - Practically above enables the parser to perform below functions:
+    - improved syntax higlighting over the basic regex syntax higlighting that
+      could otherwise be perfored by the editor.
+    - code folding
+    - smarter code navigation and indentation
+    - Using a companion plugin like nvim-treesitter-textobjects, you can use
+      intuitive keymaps to select, delete, or change entire structures.
+ - I am currently using nvim-treesitter as a parser.  This requires the
+   installation of treesitter-cli which can be installed via Mason
+
+ ### Expand
  - Linter
  - Type checker
  - Debuger
@@ -55,3 +71,4 @@ line-length = 79
    throw an error
  - Note treesitter itself is a dependency of Neovim itself so should already be
    installed
+
