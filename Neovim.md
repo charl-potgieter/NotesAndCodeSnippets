@@ -16,6 +16,10 @@ line-length = 79
  - Should debugpy  be installed by Mason rather than the pacman?
  - Same for treesitter
  - Write a section on folder structure
+ - See "Updating" section below and consider as this seems like a lot of
+   different areas that need to be updated
+   - See "Updating" section below and consider as this seems like a lot of
+     different areas that need to be updated.
 
 #### Lazy.nvim
  - My current choice of package manager for neovim
@@ -71,6 +75,23 @@ distributed independently of any given editor or IDE.
  - I am currently using nvim-treesitter as a parser.  This requires the
    installation of treesitter-cli which can be installed via Mason
 
+
+#### Updating 
+<!-- TODO: Consider -->
+With my current setup there seems to be a lot of areas where updates need to be
+run:
+ - pacman for system wide installs
+ - Lazy for neovim plugins
+ - Mason for Neovim related binaries
+ - Poetry to update python libraries - should I be doing this?  I recently ran
+   into an issue where pandas import generated an error despite it having
+   previously work and correct specification in pyproject.toml.  Potentially the
+   issue was caused by an update to python.  Should I try and control the
+   version of python that is being used?  Makes sense to use  the latest if
+   possible?
+
+
+
  ### Expand
  - Linter
  - Type checker
@@ -80,7 +101,7 @@ distributed independently of any given editor or IDE.
 
 
 #### Treesitter
- - TODO: Maybe better installed via Mason rather than Pacman
+ <!-- - TODO: Maybe better installed via Mason rather than Pacman -->
  - Need to install treesitter-cli, otherwise checkhealth nvim-treesitter will
    throw an error
  - Note treesitter itself is a dependency of Neovim itself so should already be
