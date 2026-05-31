@@ -18,8 +18,6 @@ line-length = 79
  - Write a section on folder structure
  - See "Updating" section below and consider as this seems like a lot of
    different areas that need to be updated
-   - See "Updating" section below and consider as this seems like a lot of
-     different areas that need to be updated.
 
 #### Lazy.nvim
  - My current choice of package manager for neovim
@@ -46,14 +44,20 @@ line-length = 79
  - Mason itself can be installed using Lazy.nvim
 
 #### Language Server Protocol (LSP)
- - The Language Server Protocol (LSP) is an open, JSON-RPC-based protocol for use
-between source-code editors or integrated development environments (IDEs) and
-servers that provide "language intelligence tools": programming
-language-specific features like code completion, syntax highlighting and marking
-of warnings and errors, as well as refactoring routines. The goal of the
-protocol is to allow programming language support to be implemented and
-distributed independently of any given editor or IDE.
- - Python LSP examples include pyright, basedpyright and ruff.  Note that these
+ - The Language Server Protocol (LSP) is an open, JSON-RPC-based protocol for
+   use between source-code editors or integrated development environments (IDEs)
+   and servers that provide "language intelligence tools"
+ - The goal of the protocol is to allow programming language support
+   to be implemented and distributed independently of any given editor or IDE.
+ - LSP features include:
+     - go-to-definition
+     - find references
+     - hover
+     - completion
+     - rename
+     - format
+     - refactor
+  - Python LSP examples include pyright, basedpyright and ruff.  Note that these
    tools sometimes play dual roles for example pyright is first and foremost a
    static type checker but also takes on the role as LSP in Neovim.
  - nvim-lspconfig is a collection of LSP server configurations for the Nvim LSP
