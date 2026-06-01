@@ -15,3 +15,20 @@ This does not appear in Whichkey
 
 **U** Undo all changes in the current line - unlike small u that only undoes the
 current change.
+
+#### Ex-commands
+
+##### Substittion
+ s/thee/the/
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Replaces first
+ match in current line <br> 
+ s/thee/the/g
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Replaces all matches in current
+ line <br>
+ %s/thee/the &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Replaces
+ first occurence in each line of entire file <br>
+ %s/thee/the/g
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Replaces all occurances in entire file <br>
+ %s/thee/the/gc &nbsp;&nbsp;&nbsp;Replaces ll occurences in etire file with
+ confirmation
+
