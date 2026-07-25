@@ -23,7 +23,7 @@ In summary
 
  - Consider any sensitve information that may exist on the system that may need to be added to the exclusion file, and potentially add it to a password keeper to enable it to be manually added to the new pc.
 
-##### Backing up on non-live system
+#### Backing up on non-live system
 
 I was previously not backing up on a live system but have switched to backing
 up a live system as seems to be working.  If I for some reason need to stop
