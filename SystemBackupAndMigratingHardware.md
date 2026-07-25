@@ -69,7 +69,7 @@ backing up a live system I would need to follow below steps:
  `rm -r /mnt/boot/*` <br>
  `rm -r /mnt/*`
 
- - mount the drive containing the tarball backup (or log into samba or get from cloud).
+ - mount the drive containing the tarball backup (or log into samba or get from cloud).   Mount this to a a temporary directory, not /mnt as this is being used as the restore point.
  
  - Navigate to the /mnt directory (assuming this is the mount point for root on the new target pc)
 
