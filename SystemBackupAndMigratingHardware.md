@@ -10,6 +10,9 @@
 
 
 ## Backing up the system
+ - It is recommended to alias the backup script in .bashrc  (sudo should be
+   included in the alias as the backup script needs to be run as super user)
+
 - I am currently backing up using bsdtar backup as permissions are maintained inside the tarball irrespective of type of filesystem where the tarball is saved.  Note, bsdtar is used as GNU tar does not preserve extended attributes as noted on Arch Wiki.
 
 - Follow instructions as per arch wiki
@@ -20,7 +23,13 @@ In summary
 
  - Consider any sensitve information that may exist on the system that may need to be added to the exclusion file, and potentially add it to a password keeper to enable it to be manually added to the new pc.
 
- - Do not backup a live system, boot pc using arch installation usb.  (I am currently experimenting backing up a live sytem  using the custom bash script which will make some of the below irrelevant)
+##### Backing up on non-live system
+
+I was previously not backing up on a live system but have switched to backing
+up a live system as seems to be working.  If I for some reason need to stop
+backing up a live system I would need to follow below steps:
+
+ - Boot pc to be backed up using arch installation usb.
 
 - Open any encrypted drives e.g. <br> `cryptsetup open /dev/sdx root.`
 
