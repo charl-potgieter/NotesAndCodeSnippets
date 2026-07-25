@@ -58,12 +58,16 @@ backing up a live system I would need to follow below steps:
 
  - Partition disks on new hardware if required.  Current install contains an EFI boot partition and a dm-crypted root ext 4 partition,
  
- - Mount the partitions on the target noting that any encrpyted partition will first need to be opened for example <br>
+ - Mount the root partitions on the target noting that any encrpyted partition will first need to be opened for example <br>
  `cryptsetup open /dev/sdx root` <br>
  `mount /dev/mapper/root /mnt` <br>
- Mount the unencrpted boot partition at /mnt/boot  (I currently am using seperate partitions - encrypted for root and unencrypted boot as above  which both need to be mounted).  Can refer to /etc/fstab of the source system for guidance as to the partitioning scheme being utilised.
 
- - If not repartitioning delete files on old hardware - depending on setup with rm -r /mnt   BE CAREFUL - maybe safer to do this before mounting the drive containing the backup !!! 
+ - Mount the unencrpted boot partition  (I currently am using seperate partitions - encrypted for root and unencrypted boot as above  which both need to be mounted).  Can refer to /etc/fstab of the source system for guidance as to the partitioning scheme being utilised. <br>
+` /mnt/boot`
+
+ - If not repartitioning delete files on old hardware - depending on setup with below commands. **BE CAREFUL** - maybe safer to do this before mounting the drive containing the backup !!! <br>
+ `rm -r /mnt/boot/*` <br>
+ `rm -r /mnt/*`
 
  - mount the drive containing the tarball backup (or log into samba or get from cloud).
  
