@@ -13,8 +13,6 @@ line-length = 79
  - What is vulture and how and why did I install it
  - Note how vulture and depugpy are listed as dependiencies in the virtual
    poetry environment
- - Should debugpy  be installed by Mason rather than the pacman?
- - Same for treesitter
  - Write a section on folder structure
  - See "Updating" section below and consider as this seems like a lot of
    different areas that need to be updated
@@ -28,7 +26,7 @@ line-length = 79
      - ~/.config/nvim/init.lua
      - ~/.config/nvim/lua/config/lazy.lua
  - Lazy.nvim, like Neovim itself, uses Lua as a scripting language for setup
- - There is a new plugin manager which is now native to Neovim called vi.pack.
+ - There is a new plugin manager which is now native to Neovim called vim.pack.
    Potentially still lacking too many features, or requires complexity tyo
    implement anythign other than basic setup.   Keep an eye on development
    status though.
