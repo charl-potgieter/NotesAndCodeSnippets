@@ -27,7 +27,11 @@ line-length = 79
    generally not installed by the OS package manager
      - ~/.config/nvim/init.lua
      - ~/.config/nvim/lua/config/lazy.lua
- - Lazy.nvim, like Lua itself, uses Lua as a scripting language for setup
+ - Lazy.nvim, like Neovim itself, uses Lua as a scripting language for setup
+ - There is a new plugin manager which is now native to Neovim called vi.pack.
+   Potentially still lacking too many features, or requires complexity tyo
+   implement anythign other than basic setup.   Keep an eye on development
+   status though.
 
 
  #### Mason
