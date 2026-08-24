@@ -78,9 +78,73 @@ line-length = 79
     - smarter code navigation and indentation
     - Using a companion plugin like nvim-treesitter-textobjects, you can use
       intuitive keymaps to select, delete, or change entire structures.
- - I am currently using nvim-treesitter as a parser.  This requires the
-   installation of treesitter-cli which can be installed via Mason
+ - A parser helps other tools understand the code.  Linters and formatters (see
+   below) may use a parser to build the abstract syntax tree (AST) to enable
+   them to perform their functions.
+ - I am currently utilising treesitter as a parser (as of Aug 2026 there are not
+   any genuine alternatives)
 
+
+
+#### Treesitter
+ - As of Neovim 0.12, the treesitter library is directy implemented into Neovim 
+ - There are however only a limited number of parsers that are natively included
+   in Nvim (there is no parser for python for example)
+ - A plugin such as https://github.com/nvim-treesitter/nvim-treesitter is
+   required to install additional parsers
+ - As at August 2026 the nvim-treestitter github page states that treesitter-cli
+   is required to be installed by the systems package manager (not npm)
+
+#### Linter
+
+ - A linter is a static code analysis tool that inspects source code to
+   flag potential errors, syntax bugs, bad practices, and formatting style
+   issues
+ - Linters perform below functions:
+     - Catches Syntax Errors & Bugs Early: Identifies typos, undefined variables,
+     unreachable code, or missing imports before you compile or execute your
+     program.
+
+    - Enforces Code Style & Guidelines: Ensures code matches established standards
+    (like PEP 8 in Python or standard rules in JavaScript) regarding naming
+    conventions, unused code, or line lengths.
+
+    - Improves Security & Maintainability: Warns about dangerous code patterns (e.g.,
+    hardcoded passwords, unsafe function calls, or memory leaks).
+
+    - Ruff is my current choice of linter for python (note that ruff
+   performs dual roles - both fomratting and linting)
+
+#### Code formatter
+
+-  Code formatters focus on visual presentation and style compliance.
+
+- Specific functions include:
+     - Indentation and spacing
+     - Line length and wrapping
+     - Import and declaration sorting
+     - Quote and syntax consitency
+
+ - Ruff is my current choice of code formatter for python (note that ruff
+   performs dual roles - both fomratting and linting)
+
+#### Type checker
+
+- A type checker verifies that data types are are being used correctly and
+  consistently throughout your codebase—without actually running your code.
+- Examples of responsibilities: 
+    - Type Verification: Ensures you aren't passing invalid data types into
+      functions (e.g., passing a string to a math function expecting an int).
+    - Signature Checking: Ensures functions return the exact types they claim to
+      return and receive all required arguments.
+    - Type Inference: Traces values and control flow through your code to infer
+      the type of variables, even if you haven't explicitly written type hints
+      for every line.
+    - Catching Null/Undefined Errors: Flags code paths where an object might
+      unexpectedly be None/null/undefined before performing an operation on it.
+- Pyright (by microsoft) is my current preferred python type checker.  Pyrefly
+  (meta) is faster but is generally regarded as less accurate.  Ty (by Astral)
+  is faster but still in beta Aug 26 and may be worth reviewing in 2027.
 
 #### Updating 
 <!-- TODO: Consider -->
@@ -98,18 +162,11 @@ run:
 
 
 
+
+
+
  ### Expand
- - Linter
- - Type checker
  - Debuger
- - Reason why I am using both pyright and ruff
-
-
-
-#### Treesitter
- <!-- - TODO: Maybe better installed via Mason rather than Pacman -->
- - Need to install treesitter-cli, otherwise checkhealth nvim-treesitter will
-   throw an error
- - Note treesitter itself is a dependency of Neovim itself so should already be
-   installed
+ - Reason why I am using both pyright and ruff and how to handle settings to
+   prevent overlap in functionalities.
 

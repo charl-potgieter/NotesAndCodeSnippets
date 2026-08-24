@@ -5,7 +5,11 @@
  after it has been copied into Neovim.  <!--TODO:  Need to build a better
  understanding of why this and where this is setp.  I potentially have this
  mapped somewhere-->
+<br><br>
+ **gqq** Does the same as the above, but the row does not need to be highlighted
 This does not appear in Whichkey
+<br><br>
+**gc** and **gcc** comments selected text and current line respectively.
 
 #### Insert mode keyboard shortcuts
 
