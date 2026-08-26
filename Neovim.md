@@ -146,6 +146,26 @@ line-length = 79
   (meta) is faster but is generally regarded as less accurate.  Ty (by Astral)
   is faster but still in beta Aug 26 and may be worth reviewing in 2027.
 
+
+#### Debugging in python
+<!-- TODO:  -->
+- Need to add general notes re nvim-dap etc 
+
+
+#### Debugpy installation
+
+ - There are a few options
+     - install via package manager
+     - install via Mason
+     - install via python project / package manager such as poetry or UV
+ - I am currently leaning towards a Mason install.  
+ - I don't see any need to for project level install with poetry or UV as each
+   time I want to use a debugger I will need to list as a dependency in poetry
+   or UV.
+ - Mason seems to be a clean approach in keeping Neovim related binaries bundled
+   without poluting the global environment.
+
+
 #### Updating 
 <!-- TODO: Consider -->
 With my current setup there seems to be a lot of areas where updates need to be
