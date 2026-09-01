@@ -32,29 +32,42 @@ We can now push to this remote samba repo with below: <br>
 
 ### 3. Automating pushing to the bare repo at the same time as pushing to Github
 
+Assuming that a remote called origin has already been created on for example
+Github, add a second remote to target path on samba drive as below: <br>
+`git remote add samba /mnt/samba/backups/my-repo.git`
+
+
 Add the below to .basrc to push both to the remote repo named origin and the
 samba repo at the same time with pushall.  Pushall accepts exaclty the same
 parameters as push as the "@" passes all arguments directly to git push.
 
-<pre><code class="language-bash">
     pushall() {
-        # Detect current branch for display logging only
-        local branch
-        branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "HEAD")
-
-        echo "==> Pushing ($branch) to GitHub..."
+        echo "==> Pushing to GitHub..."
         git push origin "$@"
 
         # Check if Samba share is accessible
         if mountpoint -q /mnt/samba || [ -d "/mnt/samba/backups" ]; then
-            echo "==> Samba available. Syncing ($branch) to backup..."
+            echo "==> Samba available. Syncing to backup..."
             git push samba "$@"
         else
             echo "==> Notice: Samba share unavailable. Skipping local backup."
         fi
     }
-</code></pre>
 
-f
 ### 4. Inspecting the contents of the bare repo and performing a full clone
+
+**TODO Need to test this** <br>
+Note that the source code will not be directly visible in the bare repo.  Files
+are compressed and stored as database objects.
+
+Files in the bare repo can be viewed and restored via below methods:
+
+List all files inside the latest commit on the samba share <br>
+`git --git-dir=/mnt/samba/backups/my-project.git ls-tree -r HEAD`
+
+View the actual text content of test.py from the samba share<br>
+`git --git-dir=/mnt/samba/backups/my-project.git show HEAD:test.py`
+
+Perform a full clone
+`git clone /mnt/samba/backups/my-project.git /tmp/restored-project`:w
 
