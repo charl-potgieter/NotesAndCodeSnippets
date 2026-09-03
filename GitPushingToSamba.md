@@ -41,18 +41,20 @@ Add the below to .basrc to push both to the remote repo named origin and the
 samba repo at the same time with pushall.  Pushall accepts exaclty the same
 parameters as push as the "@" passes all arguments directly to git push.
 
-    pushall() {
-        echo "==> Pushing to GitHub..."
-        git push origin "$@"
+````bash
+pushall() {
+    echo "==> Pushing to GitHub..."
+    git push origin "$@"
 
-        # Check if Samba share is accessible
-        if mountpoint -q /mnt/samba || [ -d "/mnt/samba/backups" ]; then
-            echo "==> Samba available. Syncing to backup..."
-            git push samba "$@"
-        else
-            echo "==> Notice: Samba share unavailable. Skipping local backup."
-        fi
-    }
+    # Check if Samba share is accessible
+    if mountpoint -q /mnt/samba || [ -d "/mnt/samba/backups" ]; then
+        echo "==> Samba available. Syncing to backup..."
+        git push samba "$@"
+    else
+        echo "==> Notice: Samba share unavailable. Skipping local backup."
+    fi
+}
+````
 
 ### 4. Inspecting the contents of the bare repo and performing a full clone
 
