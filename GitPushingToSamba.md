@@ -69,15 +69,18 @@ are compressed and stored as database objects.
 
 Files in the bare repo can be viewed and restored via below methods:
 
+Navigate to the bare repo folder. <br>
 List all files inside the latest commit on the samba share <br>
-`git --git-dir /path/to/your/bare-repo.git ls-tree -r HEAD --name-only`
+`git  ls-tree -r HEAD --name-only`
 
 View the actual text content of test.py from the samba share<br>
-`git --git-dir /path/to/your/bare-repo.git show HEAD:test.py`
+`git show HEAD:test.py`
 
-Alternatively, navigate to the git repo and run the above commands without the
---git-dir option
+Alternatively specify bare repo directory path without navigation to the folder.
+```
+git --git-dir /path/to/your/bare-repo.git ls-tree -r HEAD --name-only
+git --git-dir /path/to/your/bare-repo.git show HEAD:test.py
+```
 
-Perform a full clone
-`git clone /mnt/samba/backups/my-project.git /tmp/restored-project`:w
-
+A full clone of the bare repo can be performed with the below: <br>
+`git clone /path/to/your/bare-repo.git /tmp/restored-project`
