@@ -48,19 +48,33 @@ samba repo at the same time with pushall.  Pushall accepts exactly the same
 parameters as push as the "@" passes all arguments directly to git push.
 
 ````bash
-pushall() {
+gitpushall() {
+    echo -e "\n"
     echo "==> Pushing to GitHub..."
     git push origin "$@"
+    echo -e "\n"
 
-    # Check if Samba share is accessible
-    if [ -d "/mnt/samba/backups" ]; then
-        echo "==> Samba available. Syncing to backup..."
-        git push samba "$@"
-    else
-        echo "==> Notice: Samba share unavailable. Skipping local backup."
-    fi
+    echo "==> Pushing to samba..."
+    git push samba "$@"
+    echo -e "\n"
 }
 ````
+
+Similar configuration can be added to .bashrc for yadm as below
+````bash
+yadmpushall() {
+    echo -e "\n"
+    echo "==> Pushing to GitHub..."
+    yadm push origin "$@"
+    echo -e "\n"
+
+    echo "==> Pushing to samba..."
+    yadm push samba "$@"
+    echo -e "\n"
+}
+````
+
+
 
 ### 4. Inspecting the contents of the bare repo and performing a full clone
 
