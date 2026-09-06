@@ -13,7 +13,7 @@ over and above pushing to Github or other cloud repo.   I do this via pushing to
 a bare repo on a local samba server.  The steps are as below.
 
 
-### 1. Create a bare repo on the samba directory
+## 1. Create a bare repo on the samba directory
 
 Create and navigate to the target directory The convention is to have a directory
 name with a .git suffix Create the bare repo with the below command:<br>
@@ -43,8 +43,8 @@ Github, add a second remote to target path on samba drive as below: <br>
 `git remote add samba /mnt/samba/backups/my-repo.git`
 
 
-Add the below to .basrc to push both to the remote repo named origin and the
-samba repo at the same time with pushall.  Pushall accepts exaclty the same
+Add the below to .bashrc to push both to the remote repo named origin and the
+samba repo at the same time with pushall.  Pushall accepts exactly the same
 parameters as push as the "@" passes all arguments directly to git push.
 
 ````bash
@@ -53,7 +53,7 @@ pushall() {
     git push origin "$@"
 
     # Check if Samba share is accessible
-    if mountpoint -q /mnt/samba || [ -d "/mnt/samba/backups" ]; then
+    if [ -d "/mnt/samba/backups" ]; then
         echo "==> Samba available. Syncing to backup..."
         git push samba "$@"
     else

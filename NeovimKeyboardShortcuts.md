@@ -20,9 +20,20 @@ This does not appear in Whichkey
 **U** Undo all changes in the current line - unlike small u that only undoes the
 current change.
 
+#### Spell check
+
+**/ss** toggles spell checker (this is my custom shortcut key) <br><br>
+**z=** recommendations for spell corrections <br><br>
+**]s** moves to next <br><br>
+**[s** moves to previous <br><br>
+**zg** add as a good word <br><br>
+
+See following link for further shortcuts:
+https://neovim.io/doc/user/spell/
+
 #### Ex-commands
 
-##### Substittion
+##### Substitution
  s/thee/the/
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Replaces first
  match in current line <br> 
