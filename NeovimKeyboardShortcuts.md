@@ -31,6 +31,14 @@ current change.
 See following link for further shortcuts:
 https://neovim.io/doc/user/spell/
 
+#### Terminal
+
+:term opens terminal buffer.  Need to type i to enter insert mode.  <br>
+To exit terminal type Ctrl \, then Ctrl N  (explore mapping this to escape) <br>
+Once exited, terminal mode it is still necessary to switch back to previous
+buffer.
+
+
 #### Ex-commands
 
 ##### Substitution
