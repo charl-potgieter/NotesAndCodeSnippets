@@ -9,7 +9,10 @@
  **gqq** Does the same as the above, but the row does not need to be highlighted
 This does not appear in Whichkey
 <br><br>
-**gc** and **gcc** comments selected text and current line respectively.
+**gc** and **gcc** comments selected text and current line respectively. <br><br>
+**Ctrl-w** followed by another character = windows related commands e.g  Ctrl w
+v is vertical split.   Refer whichkey after control-w is pressed.
+
 
 #### Insert mode keyboard shortcuts
 
