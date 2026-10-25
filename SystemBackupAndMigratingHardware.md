@@ -1,11 +1,13 @@
 # System backup and restore
 
 ## References
- - https://wiki.archlinux.org/title/Migrate_installation_to_new_hardware  (The top to bottom approach)
+ - https://wiki.archlinux.org/title/Migrate_installation_to_new_hardware  (The
+   top to bottom approach)
  - https://wiki.archlinux.org/title/Installation_guide#Example_layouts
  - https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system
  - https://wiki.archlinux.org/title/Full_system_backup_with_tar
- - https://wiki.archlinux.org/title/Rsync#Full_system_backup  (for guidance as to recommended exclusion folders)
+ - https://wiki.archlinux.org/title/Rsync#Full_system_backup  (for guidance as
+   to recommended exclusion folders)
  - https://wiki.archlinux.org/title/Systemd-boot
 
 
@@ -13,112 +15,204 @@
  - It is recommended to alias the backup script in .bashrc  (sudo should be
    included in the alias as the backup script needs to be run as super user)
 
-- I am currently backing up using bsdtar backup as permissions are maintained inside the tarball irrespective of type of filesystem where the tarball is saved.  Note, bsdtar is used as GNU tar does not preserve extended attributes as noted on Arch Wiki.
+- I am currently backing up using bsdtar backup as permissions are maintained
+  inside the tarball irrespective of type of filesystem where the tarball is
+  saved.  Note, bsdtar is used as GNU tar does not preserve extended attributes
+  as noted on Arch Wiki.
 
 - Follow instructions as per arch wiki
-	https://wiki.archlinux.org/title/Full_system_backup_with_tar
+  https://wiki.archlinux.org/title/Full_system_backup_with_tar
 
 In summary
- - Ensure that my custom tar backup script and exclusion file are located on the pc to be backed up.  These were constructed based on arch wiki page above.
+ - Ensure that my custom tar backup script and exclusion file are located on the
+   pc to be backed up.  These were constructed based on arch wiki page above.
 
- - Consider any sensitve information that may exist on the system that may need to be added to the exclusion file, and potentially add it to a password keeper to enable it to be manually added to the new pc.
+ - Consider any sensitve information that may exist on the system that may need
+   to be added to the exclusion file, and potentially add it to a password
+   keeper to enable it to be manually added to the new pc.
 
 #### Backing up on non-live system
 
-I was previously not backing up on a live system but have switched to backing
-up a live system as seems to be working.  If I for some reason need to stop
-backing up a live system I would need to follow below steps:
+I was previously not backing up on a live system but have switched to backing up
+a live system as seems to be working.  If I for some reason need to stop backing
+up a live system I would need to follow below steps:
 
  - Boot pc to be backed up using arch installation usb.
 
 - Open any encrypted drives e.g. <br> `cryptsetup open /dev/sdx root.`
 
- - Mount necessary partitions - may include a root and a boot partition.  If mounting an encrypted partition it may need to be mounted with something like this:
-    `mount /dev/mapper/root /mnt`
+ - Mount necessary partitions - may include a root and a boot partition.  If
+   mounting an encrypted partition it may need to be mounted with something like
+   this: `mount /dev/mapper/root /mnt`
 
- - Mount any necessary backup destination drives before chroot (cannot seem to run blkid, fdisk or mount once I am in chroot).  Note the double referenced /mnt - the mount will look someting like this: <br>
- `mount /dev/sdx  /mnt/mnt/ExternalHdd`
+ - Mount any necessary backup destination drives before chroot (cannot seem to
+   run blkid, fdisk or mount once I am in chroot).  Note the double referenced
+   /mnt - the mount will look someting like this: <br> `mount /dev/sdx
+   /mnt/mnt/ExternalHdd`
 
- - Use chroot rather than arch-chroot (see reason given on above arch wiki page, although I think my tar exlusions should mitigate this)
-	chroot /mnt /bin/bash
+ - Use chroot rather than arch-chroot (see reason given on above arch wiki page,
+   although I think my tar exlusions should mitigate this) chroot /mnt /bin/bash
 
- - As sudo, run the backup script which references the exclusion file - this should already be saved on the pc hard drive
-
+ - As sudo, run the backup script which references the exclusion file - this
+   should already be saved on the pc hard drive
 
 
 ## Restoring backup on new hardware
 
- - Backups can also be restored on a virtual machine for testing purposes
- 
- - Safest option is to copy backup tarball onto a usb stick with nothing else important on it.
+
+### Preparing the target hardware for install
+
 
  - Be careful - don't install on the orignal machine if not the intention!
 
  - Boot the target machine using arch linux install medium
 
- - Partition disks on new hardware if required.  Current install contains an EFI boot partition and a dm-crypted root ext 4 partition,
+ - If not repartitioning delete files on old hardware - depending on setup with
+   below commands. **BE CAREFUL** - maybe safer to do this before mounting the
+   drive containing the backup if a usb drive is being used to transsfer data
+   !!! <br> `rm -r /mnt/boot/*` <br> `rm -r /mnt/*`
+
+ - Partition disks on new hardware if required.  Current install contains an EFI
+   boot partition and a dm-crypted root ext 4 partition,
  
- - Mount the root partitions on the target noting that any encrpyted partition will first need to be opened for example <br>
- `cryptsetup open /dev/sdx root` <br>
- `mount /dev/mapper/root /mnt` <br>
+ - Mount the root partitions on the target noting that any encrpyted partition
+   will first need to be opened for example <br> `cryptsetup open /dev/sdx root`
+   <br> `mount /dev/mapper/root /mnt` <br>
 
- - Mount the unencrpted boot partition  (I currently am using seperate partitions - encrypted for root and unencrypted boot as above  which both need to be mounted).  Can refer to /etc/fstab of the source system for guidance as to the partitioning scheme being utilised. <br>
-` /mnt/boot`
+ - Mount the unencrypted boot partition  (I currently am using seperate
+   partitions - encrypted for root and unencrypted boot as above  which both
+   need to be mounted).  Can refer to /etc/fstab of the source system for
+   guidance as to the partitioning scheme being utilised. <br> ` /mnt/boot`
 
- - If not repartitioning delete files on old hardware - depending on setup with below commands. **BE CAREFUL** - maybe safer to do this before mounting the drive containing the backup !!! <br>
- `rm -r /mnt/boot/*` <br>
- `rm -r /mnt/*`
 
- - mount the drive containing the tarball backup (or log into samba or get from cloud).   Mount this to a a temporary directory, not /mnt as this is being used as the restore point.
+### Options for transfering the tarball to a target pc to test restore
+
+#### Copy tarball onto USB
+
+ - Copy backup tarball onto a usb stick with nothing else important on it.
+
+ - Likely that this will need to be a seperate USB to arch-iso installer given
+   that the arch-iso is formatted in FAT32 and won't be able to accomdate the
+   large file size
+
+#### Access over samba share
+ - Boot the target pc with arch-iso installer
+
+ - If not using ethernet on the target pc, it needs to be connected to wifi.
+   This can be done in the install environment using iwctl
+    - https://wiki.archlinux.org/title/Iwd#iwctl
+    - run with iwctl
+    - Get wireless device list with `device list`
+    - If device or adaptor is off turn it on with `device <name> set-property
+      Powered on` and /  or `adapter <adapter> set-property Powered on`
+    - scan with `station <name> scan`  (this does not produce any output)
+    - List networks with `station <name> get-networks`
+    - Connect with `station <name> connect <SSID>`
+<br><br>
+ - Temporarily install cifs-utils on the target pc in the install environment
+   (note that this install is not persistent between boots) with `pacman -Sy
+   cifs-utils`  (note the pacman -Sy forces pacman to download the latest
+   package databases from the mirrors before attempting to install the package
+   which is necesary in the install environment.  Never to this in a live
+   system)
+ - The target system is traditionally created at `/mnt`, so restore the tarball
+   in a different directory for example `/mnt_restore`
+ - The samba share can now be mounted for example `mount --mkdir  -t cifs
+   //SERVER/sharename /mnt_restore -o username=<username>`
+
+
+#### Extracting the tarball
+
+ - mount the drive containing the tarball backup (or log into samba or get from
+   cloud).   Mount this to a a temporary directory, not /mnt as this is being
+   used as the restore point.
  
- - Navigate to the /mnt directory (assuming this is the mount point for root on the new target pc)
+ - As per above Arch wiki page (with addition of verbose flag) restore the files
+   as follows <br> `bsdtar --acls --xattrs -xpzvf /mnt_restore/backupfile
+   --directory /mnt`
 
- - As per above Arch wiki page (with addition of verbose flag) restore the files as follows <br>
-	`bsdtar --acls --xattrs -xpzvf backupfile`
 	
-- Finalise the installation
-	- Follow instructions here <br>
-    https://wiki.archlinux.org/title/Migrate_installation_to_new_hardware, in particular note
-	- update fstab - first have to delete the old lines referencing the  original partitions (but not the samba partitions or swap file) and then run (before arch-chroot).  If a usb was mounted containing the backup tarball, it is safer to unmount this before generating fstab. <br>
-    `genfstab -U /mnt >> /mnt/etc/fstab`
-	- Arch wiki refers to updating bootloader but in case of sticking with systemd boot I can simply update the root partition (not the boot partition!) referenced in the kernel options of systms d boot in /mnt/boot/loader/entries/arch.conf and /mnt/boot/loader/entries/arch-fallback.conf 
-        - Note that the UUID that needs to be included in these files is that which appears per BLKID, which is different to /etc/fstab
-        - It can be useful for the anyt target pc used for test restores to have both encrypted and standard partitions that can be used as root partitions depending on the nature of the source pc setup.
-        - Alternatively, adjustment may needed to be made one if the backup and the target root partitions was encrypted with dm-crypt and and the other is not.  For a dm-crypt partition the relevant entry looks like this: <br>
-        `options cryptdevice=UUID=XXX-XXX-XXXX-XXX:root root=/dev/mapper/root`<br>
-        For a non encrpyted partition the entry will look something like this: <br>
-        `options root=UID=XXX-XXX-XXXX-XXX rw`
-	- arch-chroot into the new system and creat a new initramfs with mkinitcpio -P
-	- update /etc/hostname
-	- Refer paths excluded from backup per exclusion file due to senstive nature.  These may need to be manually restored by reference to data stored in a password keeper.
-    - Shut down, remove any usbs and reboot
-    - wifi may need to be enabled, for exanmple by using nmtui (assuming that network maneger is intalled)
+#### Finalise the installation
+- Below instructions are summarised from here: <br>
+  https://wiki.archlinux.org/title/Migrate_installation_to_new_hardware
+
+- update fstab - first have to delete the old lines referencing the original
+  partitions (but not the samba partitions or swap file) and then run
+  (before arch-chroot).  If a usb was mounted containing the backup tarball,
+  it is safer to unmount this before generating fstab. <br> `genfstab -U
+  /mnt >> /mnt/etc/fstab`
+
+- Arch wiki refers to updating bootloader but in case of sticking with
+  systemd boot I can simply update the root partition (not the boot
+  partition!) referenced in the kernel options of systms d boot in
+  `/mnt/boot/loader/entries/arch.conf` and
+  `/mnt/boot/loader/entries/arch-fallback.conf` 
+    - Note that the UUID that needs to be included in these files is that
+      which appears per BLKID, which is different to /etc/fstab
+    - It can be useful for the anyt target pc used for test restores to have
+      both encrypted and standard partitions that can be used as root
+      partitions depending on the nature of the source pc setup.
+    - Alternatively, adjustment may needed to be made one if the backup and
+      the target root partitions was encrypted with dm-crypt and and the
+      other is not.  For a dm-crypt partition the relevant entry looks like
+      this: <br>
+      `options cryptdevice=UUID=XXX-XXX-XXXX-XXX:root
+      root=/dev/mapper/root`<br> 
+      For a non encrpyted partition the entry will look something like this: <br>
+      `options root=UID=XXX-XXX-XXXX-XXX  rw`
+
+- arch-chroot into the new system and creat a new initramfs with i`mkinitcpio
+  -P`
+- update `/etc/hostname`
+- Refer paths excluded from backup per exclusion file due to senstive
+  nature.  These may need to be manually restored by reference to data
+  stored in a password keeper.
+- Shut down, remove any usbs and reboot
+- wifi may need to be enabled, for example by using nmtui (assuming that
+  network manager is intalled)
 
 ## Restoring on VirtualBox
 
-A virtualbox install seems to be more effort than it is worth.  Seems easier to perform an install on another old pc.  Below notes detail my attempt at more or less getting a sway based GUI install up and running.
+A virtualbox install seems to be more effort than it is worth.  Seems easier to
+perform an install on another old pc.  Below notes detail my attempt at more or
+less getting a sway based GUI install up and running.
 
-- When creating virtual machine ensure enable EFI is ticked under hardware if the operating system is running in EFI 
-- Make hard drive sufficient size to accomodate OS as well as the tarball to be extracted
-- Ensure OS type is selected as Linux->Arch Linux.  This has a habit of switching to something else while completing settings so ensure the blue Arch logo is displayed on the vitrtual machine (this can be set under Settings / General)
-- Use scp to copy the system backup tarball onto the virtual machine (Share folders are challenging as machine  is not yet set up so guest additions can't easily be installed.  Converting the tarball to an iso is challenging due to tarball size)
+- When creating virtual machine ensure enable EFI is ticked under hardware if
+  the operating system is running in EFI 
+- Make hard drive sufficient size to accomodate OS as well as the tarball to be
+  extracted
+- Ensure OS type is selected as Linux->Arch Linux.  This has a habit of
+  switching to something else while completing settings so ensure the blue Arch
+  logo is displayed on the vitrtual machine (this can be set under Settings /
+  General)
+- Use scp to copy the system backup tarball onto the virtual machine (Share
+  folders are challenging as machine  is not yet set up so guest additions can't
+  easily be installed.  Converting the tarball to an iso is challenging due to
+  tarball size)
 - Follow below approach in order to enable ssh access on the virtual machine:
-    - It appears as if openssh is already installed on the arch iso so no need to re-install
+    - It appears as if openssh is already installed on the arch iso so no need
+      to re-install
     - systemctl start sshd
-    - `passwd root` sets root password on iso as ssh does not work without password
+    - `passwd root` sets root password on iso as ssh does not work without
+      password
     - Set virtualbox network adaptor as NAT (should be the default)
-    - setup port forwarding in Virtualbox gui with below values: <br>
-    `Name: SSH`<br>
-`Protocol: TCP`<br>
-`Host IP: 127.0.0.1`<br>
-`Host Port: 2222`<br>
-`Guest IP: (leave blank)`<br>
-`Guest Port: 22`<br>
-    - Should now be able to copy from guest to host with : <br>
-    `scp -P 2222 /path/to/arch-backup.tar.gz root@localhost:/mnt`
-    - Note destination path should be on the mounted virtual hard drive, dont try copying to the mounted install iso
- - The GUI tends to freeze when extracting the tarball.  The preview pane in the virtualbox manager still seems to update.  Maybe wait until it has no more activity?  It may be better to SSH into the virtual machine and run the extraction via SSH from the host?
- - Sway seems to work with VBOXVGA graphics card without 3d acceleration enabled, even though it gets flagged as not a recommended setting by tthe virtualbox GUI.  The recommended graphhics card of VMSVGA does not seem to work but maybe that is because I have not yet attempted to install guest additions.
- - I have not yet tried to capture the MOD key in virtualbox  - it is not working by default.
+    - setup port forwarding in Virtualbox gui with below values: <br> `Name:
+      SSH`<br> `Protocol: TCP`<br> `Host IP: 127.0.0.1`<br> `Host Port:
+      2222`<br> `Guest IP: (leave blank)`<br> `Guest Port: 22`<br>
+    - Should now be able to copy from guest to host with : <br> `scp -P 2222
+      /path/to/arch-backup.tar.gz root@localhost:/mnt`
+    - Note destination path should be on the mounted virtual hard drive, dont
+      try copying to the mounted install iso
+ - The GUI tends to freeze when extracting the tarball.  The preview pane in the
+   virtualbox manager still seems to update.  Maybe wait until it has no more
+   activity?  It may be better to SSH into the virtual machine and run the
+   extraction via SSH from the host?
+ - Sway seems to work with VBOXVGA graphics card without 3d acceleration
+   enabled, even though it gets flagged as not a recommended setting by tthe
+   virtualbox GUI.  The recommended graphhics card of VMSVGA does not seem to
+   work but maybe that is because I have not yet attempted to install guest
+   additions.
+ - I have not yet tried to capture the MOD key in virtualbox  - it is not
+   working by default.
  - Consider deleting the tarball in the VM to save drive space
 
