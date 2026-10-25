@@ -69,7 +69,9 @@ up a live system I would need to follow below steps:
 
  - If not repartitioning delete files on old hardware - depending on setup with
    below commands. **BE CAREFUL** - maybe safer to do this before mounting the
-   drive containing the backup if a usb drive is being used to transsfer data
+   drive containing the backup if a usb drive is being used to transsfer data.
+   Mount the drives as approriate and delete content something like this
+   depending on how the target drive is partitioned.
    !!! <br> `rm -r /mnt/boot/*` <br> `rm -r /mnt/*`
 
  - Partition disks on new hardware if required.  Current install contains an EFI
