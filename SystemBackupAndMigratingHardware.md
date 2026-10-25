@@ -120,8 +120,19 @@ up a live system I would need to follow below steps:
  - The samba share can now be mounted for example `mount --mkdir  -t cifs
    //SERVER/sharename /mnt_restore -o username=<username>`
 
+#### Obtaining a backup tarball from onedrive
 
-#### Extracting the tarball
+- Downloading larger files from Onedrive with a web browser often seem to fail
+
+- Most likely will need to download with rclone.
+
+- This can be done on source pc and the tarball can then be transferred to
+  target over samba or with USB.
+  
+ - ***TODO***  - explore copying rclone config across to arch iso and then
+   downloading tarball from Onedrive
+
+### Extracting the tarball
 
  - mount the drive containing the tarball backup (or log into samba or get from
    cloud).   Mount this to a a temporary directory, not /mnt as this is being
@@ -132,7 +143,7 @@ up a live system I would need to follow below steps:
    --directory /mnt`
 
 	
-#### Finalise the installation
+### Finalise the installation
 - Below instructions are summarised from here: <br>
   https://wiki.archlinux.org/title/Migrate_installation_to_new_hardware
 
