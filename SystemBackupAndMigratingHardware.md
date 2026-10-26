@@ -100,16 +100,14 @@ up a live system I would need to follow below steps:
 #### Access over samba share
  - Boot the target pc with arch-iso installer
 
+
  - If not using ethernet on the target pc, it needs to be connected to wifi.
    This can be done in the install environment using iwctl
-    - https://wiki.archlinux.org/title/Iwd#iwctl
-    - run with iwctl
-    - Get wireless device list with `device list`
-    - If device or adaptor is off turn it on with `device <name> set-property
-      Powered on` and /  or `adapter <adapter> set-property Powered on`
-    - scan with `station <name> scan`  (this does not produce any output)
-    - List networks with `station <name> get-networks`
-    - Connect with `station <name> connect <SSID>`
+    - Get the wireless interface name with `ip link` (the wireless interface
+      normally starts with a "w".)
+    - Connect with `iwctl station <interface name> connect <SSID>`
+    - Refer to following for further guidance:
+      https://wiki.archlinux.org/title/Iwd#iwctl
 <br><br>
  - Temporarily install cifs-utils on the target pc in the install environment
    (note that this install is not persistent between boots) with `pacman -Sy
@@ -124,15 +122,36 @@ up a live system I would need to follow below steps:
 
 #### Obtaining a backup tarball from onedrive
 
-- Downloading larger files from Onedrive with a web browser often seem to fail
+ - Copy an encrypted version of and existing rclone config file onto the iso
+   installer from an existing arch install.  Once the iso installer is mounted
+   in an existing arch system, an encrypted version of the rclone config can be
+   created with someting like this:<br> `gpg -o /mnt/rclone.conf.gpg -c
+   ~/.config/rclone/rclone.conf`
+   
+ - Boot from the arch install ISO on the target machine.  Refer to above for
+   steps to connect the target pc to wifi if not using ethernet connection.
 
-- Most likely will need to download with rclone.
+ - Mount and prepare the target partitions as described above.
 
-- This can be done on source pc and the tarball can then be transferred to
-  target over samba or with USB.
+ - Will need to mount the ISO installer usb to obtain the rclone config, e.g.
+   <br> `mount --mkdir /dev/sdxx /mnt_rclone_config
+
+ - Decrypt the file from the installer ISO with something like this gpg -o
+   /mnt/rclone.conf -d /mnt_rclone_config/rclone.conf.gpg
   
+ - Install rclone with `pacman -Sy rclone` Never use -Sy in live system - refer
+    note above.
+
+ - Check that rclone is working as expected with `rclone --config
+   /mnt/rclone.conf listremotes`
+
+ - Copy the tarball onto the target pc with something like below:<br>
+ `rclone --config /mnt/rclone.conf copy -v source:path destination:path`
+
  - ***TODO***  - explore copying rclone config across to arch iso and then
    downloading tarball from Onedrive
+
+- ***TODO*** - Explain encrypting with gpg
 
 ### Extracting the tarball
 
