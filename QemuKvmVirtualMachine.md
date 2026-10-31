@@ -1,5 +1,23 @@
 # QEMU / KVM virtual machine install
 
+#### Background
+
+- ***Hypervisor*** = also known as a virtual machine monitor (VMM), is a type of
+computer software, firmware, or hardware that creates and runs virtual machines. 
+ - ***KVM*** =  Kernel-based Virtual Machine, is a hypervisor built into the
+   Linux kernel.  KVM is a special operating mode of QEMU that uses CPU
+   extensions (HVM) for virtualization via a kernel module.
+ - ***QEMU*** =  a generic and open source machine emulator and virtualizer.
+   QEMU can use hypervisors includiing KVM to use CPU extensions.
+- ***Libvirt*** = is a toolkit to manage virtualization platforms accessible via
+  various programming languages.  Among others it manages persistent
+  configuration and lifecycle and state management.
+ - ***virt-manager*** is a GUI for managing virtual machines through libvirt.
+
+When managing only a handful of VMs for personal use I am leaning towards
+thinking that it may be simpler and more transparent not to use libvirt and
+virt-manager.
+
 #### Enabling UEFI boot
 - See instructions here for copying OVMF_VARS file.  At the moment I am copying
 into the same directory as the virtual machine.  Each vm needs its own file:
