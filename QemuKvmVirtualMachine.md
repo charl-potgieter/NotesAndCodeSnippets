@@ -41,3 +41,9 @@ into the same directory as the virtual machine.  Each vm needs its own file:
 - The 2 lines drive if=pflash... enable UEFI boot.  See arch wiki for further
   instruction.
 
+#### Sundry 
+ - At one point I was having troubles auto booting from HDD (I had to set boot
+   menu on and press escape to select HDD.  I thing one of these 2 things fixed
+   it.
+     - setting correct permisions on /boot folder (755?)
+     - running bootctl install
